@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  	<head>
+    	<title><%= title %></title>
+    	<link rel='stylesheet' href='/stylesheets/index.css' />
+    	<link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
+  	</head>
+  	<body>
+  		<div class="container">
+			<div class="block">
+				<p class="en" id="en"></p>
+				<p class="cn" id="cn"></p>
+			</div>
+			
+			<form class="center margin">
+				<input class="btn btn-danger" id="mark" type="button" value="+ ReviewList">
+			</form>
+			<form class = "center">
+				<div class="btn-group">
+					<input class="btn btn-default" id="prep" type="button" value="&laquo&nbsp prep">
+					<input class="btn btn-default" id="show" type="button" value="show">
+					<input class="btn btn-default" id="next" type="button" value="next &nbsp&raquo">
+				</div>
+				
+			</form>
+
+			<div class="review">
+				<h1>Review List</h1>
+				<p id="reviewList"></p>
+			</div>
+		</div>
+
+		<!-- <div class="iframe-wrap">  
+			<iframe class="iframe" src="http://fanyi.baidu.com/?aldtype=16047#auto/zh" scrolling="no" ></iframe>
+		 </div> -->
+
+		<script type="text/javascript" src="/javascripts/jquery-2.2.3.js"></script>
+		<script type="text/javascript" src="/javascripts/underscore.js"></script>
+		<script type="text/javascript" src='/javascripts/word.js'></script>
+		<script type="text/javascript">
+			init("<%= path %>");
+		</script>
+  	</body>
+</html>

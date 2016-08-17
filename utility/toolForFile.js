@@ -29,6 +29,49 @@ var readDir = function(dir, cb) {
 };
 
 
+// 遍历文件夹，返回一个对象，记录文件夹中的路径信息
+// { 	path: '/Users/Document/aa',
+// 		name: 'aa',
+// 		children: [
+// 			'firename1',
+// 			'filename2',
+// 			{
+//				path: '/Users/Document/aa/bb',
+// 				name: 'bb',
+// 				children: ['filename3', 'filename4']
+// 			}
+//		]
+// }
+var scanDir = function(dir, cb) {
+
+	var iter = function(d) {
+		var stat = fs.statSync(d);
+		if (stat && stat.isDirectory()) {
+			return iterlist(d);
+		} else {
+			return path.basename(d);
+		};
+	};
+
+	var iterlist = function(d) {
+		var list = fs.readdirSync(d);
+		return {
+			path: d.replace(new RegExp(dir+"(.*)$"), "$1"),
+			name: path.basename(d),
+			children: list.filter(function(file) {
+				//过滤隐藏文件
+				return !(/^\./.test(file));
+			}).map(function(file) { 
+				file = path.resolve(d, file);
+				return iter(file); 
+			})
+		};
+	};
+
+	var result = iter(dir);
+	cb(null, result);
+};
+
 var readFile = function(dir, cb) {
 	var wordList = '';
 
@@ -55,7 +98,10 @@ var readFile = function(dir, cb) {
 	});
 };
 
-exports.readDir = readDir;
-exports.readFile = readFile;
+module.exports = {
+	readDir: readDir,
+	readFile: readFile,
+	scanDir: scanDir
+};
 
 

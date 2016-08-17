@@ -68,3 +68,51 @@
 	max-width: 500px;
 	margin: 20px 0;
 }
+input.btn {
+	outline: none !important;
+}
+
+ul, li{
+	list-style: none;
+}
+
+.main-list li{
+	padding-top: 40px;
+}
+.main-list a{
+	display: inline-block;
+	width: 150px;
+}
+
+.lex-list, .lib-list{
+	text-align: left;
+}
+.lex-list li, .lib-list li{
+	display: inline-block;
+	padding: 20px;
+	text-align: center;
+}
+
+.lex-list a, .lib-list a{
+	display: inline-block;
+	border: 1px solid blue;
+	width: 100px;
+}
+.lex-list a:hover, .lib-list a:hover{
+	text-decoration: none;
+	border-color: red;
+}
+
+.lib-list .cc{
+	width: 100px;
+	border: 1px solid red;
+	color: red;
+}
+
+.root {
+	color: #bbb;
+}
+.uu {
+	color: blue;
+	cursor: pointer;
+}

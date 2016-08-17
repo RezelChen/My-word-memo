@@ -23,21 +23,20 @@ var strToWords = function (str, list, listName) {
 			if ((listName == '') || (listNumber == undefined)) {
 				alert('请先输入词表名称和编号 ^0^');
 			} else {
-				var vocabulary = strToWords(inArea, listNumber, listName);
-				console.log(vocabulary);
 				$.ajax({
 					type : 'POST',
 					contentType: 'application/json', 
-					url : 'http://localhost:3000/data',
-					data : JSON.stringify({wordList: vocabulary}),
-					
+					url : '/input',
+					data : JSON.stringify({
+						listName: listName,
+						listNumber: listNumber,
+						inArea: inArea
+					}),
 					success: function(data) {
-						console.log(data);
-						var change = confirm('词表保存成功！是否转到背诵页背诵？');
-						if (change) {
-							console.log(change)
-							window.location.href='http://localhost:3000?listName=' + listName + '&listNumber=' + listNumber;
-						};
+						if(data === 'success') {
+							window.location.href = '/word?path=/' + 
+							listName + '/' + listNumber;
+						}
 					}	
 				});
 			}
